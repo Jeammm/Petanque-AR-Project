@@ -26,7 +26,7 @@ public class SwipeScript : MonoBehaviour
 	void Update()
 	{
 
-		if (!ground.isAlreadyPlaced)
+		if (!ground.isAlreadyPlaced || FindTheClosestBall.GameEnded)
 		{
 			return;
 		}
@@ -56,9 +56,6 @@ public class SwipeScript : MonoBehaviour
 			direction = endPos - startPos;
 			float len = Mathf.Sqrt(Mathf.Pow(direction.x, 2) + Mathf.Pow(direction.y, 2));
 
-			print(len);
-			print(timeInterval);
-
 			if (timeInterval < 0.1 || len < 200)
 			{
 				return;
@@ -69,7 +66,6 @@ public class SwipeScript : MonoBehaviour
 
 			// Calculate the tilt angle based on the left or right swipe
 			float tiltAngleX = 0.0f;
-			float tiltAngleY = 0.0f;
 
 			if (direction.x != 0)
 			{
@@ -88,7 +84,6 @@ public class SwipeScript : MonoBehaviour
 			if (rb)
 			{
 				rb.isKinematic = false;
-
 				rb.AddForce(tiltedDirection * throwForce * (len / timeInterval));
 			}
 

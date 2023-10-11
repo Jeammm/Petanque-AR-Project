@@ -63,8 +63,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: f1a110d32af21aa4d872c707dfcc6043, type: 2}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,3 +145,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a3b1cd8b1574f49bbb21a6f820e8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Mat1: {fileID: 2100000, guid: a23d1b0dc553640f682d502af95e7789, type: 2}
+  Mat2: {fileID: 2100000, guid: 743dbe898e46f4e27b435f79a524f27b, type: 2}
