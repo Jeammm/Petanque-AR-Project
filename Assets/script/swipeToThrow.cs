@@ -15,6 +15,8 @@ public class SwipeScript : MonoBehaviour {
 
 	Rigidbody rb;
 
+	public int notThrowAgain = 0;
+
 	void Start()
 	{
 		rb = GetComponent<Rigidbody> ();
@@ -22,6 +24,9 @@ public class SwipeScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if(notThrowAgain==1){
+			return;
+		}
 
 		// if you touch the screen
 		if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
@@ -52,6 +57,8 @@ public class SwipeScript : MonoBehaviour {
 
 			// Destroy ball in 4 seconds
 			// Destroy (gameObject, 3f);
+
+			notThrowAgain = 1;
 
 		}
 			
