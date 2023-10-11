@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1338,6 +1338,7 @@ GameObject:
   - component: {fileID: 1711717445}
   - component: {fileID: 1711717444}
   - component: {fileID: 1711717443}
+  - component: {fileID: 1711717449}
   m_Layer: 0
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
@@ -1434,6 +1435,22 @@ Transform:
   - {fileID: 14329350}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1711717449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711717442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7378d2b6ffcf4f5db31a1c5b2ec4df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwForce: 0.05
+  objectToThrow: {fileID: 7944438776558302291, guid: a04c6f589b6c54f5bb86ba1f3223e751,
+    type: 3}
+  ground: {fileID: 1711717444}
 --- !u!1 &1795479060
 GameObject:
   m_ObjectHideFlags: 0

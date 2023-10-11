@@ -1,43 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 
-public class SwipeScript : MonoBehaviour {
-
+public class SwipeScript : MonoBehaviour
+{
+	private ARRaycastManager arRaycastManager;
+	private Camera arCamera;
 	Vector2 startPos, endPos, direction; // touch start position, touch end position, swipe direction
 	float touchTimeStart, touchTimeFinish, timeInterval; // to calculate swipe time to sontrol throw force in Z direction
 
 	[SerializeField]
-	float throwForceInXandY = 1f; // to control throw force in X and Y directions
+	float throwForce = 5000f; // to control throw force in X and Y directions
 
-	[SerializeField]
-	float throwForceInZ = 50f; // to control throw force in Z direction
-
-	Rigidbody rb;
-
-	public int notThrowAgain = 0;
+	[SerializeField] GameObject objectToThrow;
+	public floorPlacementController ground;
 
 	void Start()
 	{
-		rb = GetComponent<Rigidbody> ();
+		arRaycastManager = FindObjectOfType<ARRaycastManager>();
+		arCamera = Camera.main;
 	}
 
 	// Update is called once per frame
-	void Update () {
-		if(notThrowAgain==1){
+	void Update()
+	{
+
+		if (!ground.isAlreadyPlaced)
+		{
 			return;
 		}
-
 		// if you touch the screen
-		if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+		{
 
 			// getting touch position and marking time when you touch the screen
 			touchTimeStart = Time.time;
-			startPos = Input.GetTouch (0).position;
+			startPos = Input.GetTouch(0).position;
 		}
 
 		// if you release your finger
-		if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Ended) {
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+		{
 
 			// marking time when you release it
 			touchTimeFinish = Time.time;
@@ -46,21 +50,52 @@ public class SwipeScript : MonoBehaviour {
 			timeInterval = touchTimeFinish - touchTimeStart;
 
 			// getting release finger position
-			endPos = Input.GetTouch (0).position;
+			endPos = Input.GetTouch(0).position;
 
 			// calculating swipe direction in 2D space
-			direction = startPos - endPos;
+			direction = endPos - startPos;
+			float len = Mathf.Sqrt(Mathf.Pow(direction.x, 2) + Mathf.Pow(direction.y, 2));
 
-			// add force to balls rigidbody in 3D space depending on swipe time, direction and throw forces
-			rb.isKinematic = false;
-			rb.AddForce (- direction.x * throwForceInXandY, - direction.y * throwForceInXandY * 5, throwForceInZ * 10 / timeInterval);
+			print(len);
+			print(timeInterval);
+
+			if (timeInterval < 0.1 || len < 200)
+			{
+				return;
+			}
+
+			GameObject newObject = Instantiate(objectToThrow, arCamera.transform.position, Quaternion.identity);
+			Rigidbody rb = newObject.GetComponent<Rigidbody>();
+
+			// Calculate the tilt angle based on the left or right swipe
+			float tiltAngleX = 0.0f;
+			float tiltAngleY = 0.0f;
+
+			if (direction.x != 0)
+			{
+				tiltAngleX = 0.5f * (Mathf.Sign(direction.x) * Mathf.Atan(Mathf.Abs(direction.x) / direction.y)) * 180 / (Mathf.PI);
+			}
+			// tiltAngleY = direction.y * 15.0f;
+
+			// Create a rotation quaternion to tilt the vector
+			Quaternion tiltRotation = Quaternion.Euler(-45, tiltAngleX, 0);
+
+			// Calculate the throwDirection and apply the tilt
+			Vector3 throwDirection = arCamera.transform.forward;
+			Vector3 tiltedDirection = tiltRotation * throwDirection;
+
+			// Add force to the ball's rigidbody based on the tilted direction and swipe time
+			if (rb)
+			{
+				rb.isKinematic = false;
+
+				rb.AddForce(tiltedDirection * throwForce * (len / timeInterval));
+			}
 
 			// Destroy ball in 4 seconds
 			// Destroy (gameObject, 3f);
 
-			notThrowAgain = 1;
-
 		}
-			
+
 	}
 }
