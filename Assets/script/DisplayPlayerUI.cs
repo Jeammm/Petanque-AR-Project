@@ -5,7 +5,7 @@ using UnityEngine;
 public class DisplayPlayerUI : MonoBehaviour
 {
     // Start is called before the first frame update
-    public floorPlacementController ground;
+    // public floorPlacementController ground;
     private GameObject Canvas;
     void Start()
     {
@@ -15,7 +15,7 @@ public class DisplayPlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ground.isAlreadyPlaced) {
+        if (floorPlacementController.isAlreadyPlaced) {
             Canvas.SetActive(true);
         }
     }

@@ -7,7 +7,7 @@ public class groundPlaceAlert : MonoBehaviour
     private GameObject Canvas;
     private GameObject UI;
 
-    public floorPlacementController ground;
+    // public floorPlacementController ground;
     // Start is called before the first frame update
     void Start()
     {   
@@ -19,7 +19,7 @@ public class groundPlaceAlert : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ground.isAlreadyPlaced) {
+        if (floorPlacementController.isAlreadyPlaced) {
             Canvas.SetActive(false);
             UI.SetActive(true);
         }
