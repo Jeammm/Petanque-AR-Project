@@ -14,7 +14,7 @@ public class SwipeScript : MonoBehaviour
 	float throwForce = 5000f; // to control throw force in X and Y directions
 
 	[SerializeField] GameObject objectToThrow;
-	public floorPlacementController ground;
+	// public floorPlacementController ground;
 
 	void Start()
 	{
@@ -26,7 +26,7 @@ public class SwipeScript : MonoBehaviour
 	void Update()
 	{
 
-		if (!ground.isAlreadyPlaced || FindTheClosestBall.GameEnded)
+		if (!floorPlacementController.isAlreadyPlaced || FindTheClosestBall.GameEnded)
 		{
 			return;
 		}

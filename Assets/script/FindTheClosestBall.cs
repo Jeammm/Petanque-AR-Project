@@ -15,9 +15,11 @@ public class FindTheClosestBall : MonoBehaviour
 
     public static bool GameEnded = false;
 
+    public static bool WinnderDeclared = false;
+
     public static int ballCount = 0;
 
-    private static int cnt = 0;
+    public static int TurnCount = 0;
     public static int playerNumber = 2;
 
     public static int winner = 0;
@@ -32,19 +34,19 @@ public class FindTheClosestBall : MonoBehaviour
     {
         thrownObjects.Add(objectToThrow); // Add the object to the list
         ballCount = thrownObjects.Count; // Update ballCount using the list size
-        Debug.Log("Ball Count: " + ballCount);
-
+        // Debug.Log("Ball Count: " + ballCount);
+            
         if (playerNumber == 1)
         {
             playerNumber = 2;
         }
         else
         {
-            cnt++;
+            TurnCount++;
             playerNumber = 1;
         }
 
-        if (cnt == 4)
+        if (TurnCount == 4)
         {
             GameEnded = true;
         }
@@ -73,13 +75,14 @@ public class FindTheClosestBall : MonoBehaviour
             }
         }
         winner = 2 - (closestObject % 2);
+        WinnderDeclared = true;
         // numberText.text = "Player " + winner + " win!!!";
     }
 
     void Update()
     {
 
-        if (GameEnded)
+        if (GameEnded && !WinnderDeclared)
         {
             bool allStopped = true;
 
@@ -98,15 +101,11 @@ public class FindTheClosestBall : MonoBehaviour
             if (allStopped)
             {
                 FindClosestObjectToFirstBall();
-                Debug.Log("All rigid bodies are stopped.");
-                // Do something here, like returning true or performing an action.
             }
 
 
-            numberText.text = "Player " + winner + " win!!!";
+            playerIndicator.text = "Player " + winner + " win!!!";
             return;
         }
-        numberText.text = "Turn " + cnt;
-        playerIndicator.text = "Player " + playerNumber;
     }
 }

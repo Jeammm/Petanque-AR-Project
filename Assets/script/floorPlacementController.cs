@@ -13,7 +13,8 @@ public class floorPlacementController : MonoBehaviour
     private ARRaycastManager arRaycastManager;
     private ARPlaneManager arPlaneManager;
 
-    public bool isAlreadyPlaced;
+    [SerializeField]
+    public static bool isAlreadyPlaced;
 
     [SerializeField]
     public GameObject objectToSpawn;
@@ -24,7 +25,7 @@ public class floorPlacementController : MonoBehaviour
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
         arPlaneManager = GetComponent<ARPlaneManager>();
-        isAlreadyPlaced = false;
+        floorPlacementController.isAlreadyPlaced = false;
     }
 
     bool TryGetTouchPosition(out Vector2 touchPosition)

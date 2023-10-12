@@ -6,7 +6,7 @@ public class PlaceObjectInFrontOfCamera : MonoBehaviour
     public ARCameraManager arCameraManager;
     public GameObject objectToPlace;
 
-    public floorPlacementController ground;
+    // public floorPlacementController ground;
 
     bool spawned = false;
 
@@ -14,7 +14,7 @@ public class PlaceObjectInFrontOfCamera : MonoBehaviour
 
     void Update()
     {
-        if (ground.isAlreadyPlaced && !spawned)
+        if (floorPlacementController.isAlreadyPlaced && !spawned)
         {
             if (arCameraManager != null)
             {
