@@ -60,6 +60,15 @@ public class SwipeScript : MonoBehaviour
 			{
 				return;
 			}
+			if (FindTheClosestBall.ThrownThisTurn)
+			{
+				return;
+			}
+
+			if (!HasBallLeft())
+			{
+				return;
+			}
 
 			GameObject newObject = Instantiate(objectToThrow, arCamera.transform.position, Quaternion.identity);
 			Rigidbody rb = newObject.GetComponent<Rigidbody>();
@@ -92,5 +101,26 @@ public class SwipeScript : MonoBehaviour
 
 		}
 
+	}
+
+	bool HasBallLeft()
+	{
+		if (FindTheClosestBall.playerNumber == 1)
+		{
+			if (PlayerInventory.Player1_BallLeft == 0)
+			{
+				return false;
+			}
+			PlayerInventory.Player1_BallLeft--;
+		}
+		else
+		{
+			if (PlayerInventory.Player2_BallLeft == 0)
+			{
+				return false;
+			}
+			PlayerInventory.Player2_BallLeft--;
+		}
+		return true;
 	}
 }

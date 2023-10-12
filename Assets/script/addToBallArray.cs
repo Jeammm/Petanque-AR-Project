@@ -10,6 +10,8 @@ public class addToBallArray : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        FindTheClosestBall.ThrownThisTurn = true;
+
         FindTheClosestBall.ThrowObject(gameObject);
 
         Renderer renderer = GetComponent<Renderer>();
@@ -27,6 +29,14 @@ public class addToBallArray : MonoBehaviour
         else
         {
             Debug.LogError("This GameObject does not have a Renderer component or playerMaterials is not set.");
+        }
+    }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Special Item")
+        {
+            PlayerInventory.AddToInventory(collision.gameObject.name);
         }
     }
 }

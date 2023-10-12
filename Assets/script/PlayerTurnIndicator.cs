@@ -15,16 +15,17 @@ public class PlayerTurnIndicator : MonoBehaviour
     public Material PlayerMat2;
     public Material Mat3;
 
+    CanvasRenderer renderer;
+
     // Start is called before the first frame update
     void Start()
     {
+        renderer = GetComponent<CanvasRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CanvasRenderer renderer = GetComponent<CanvasRenderer>();
-
         if (!FindTheClosestBall.GameEnded)
         {
             if (renderer != null)
@@ -38,19 +39,14 @@ public class PlayerTurnIndicator : MonoBehaviour
                     renderer.SetMaterial(PlayerMat2, 0);
                 }
             }
-
-            TurnCountBanner.text = "Turn " + FindTheClosestBall.TurnCount;
-            PlayerTurnBanner.text = "Player " + FindTheClosestBall.playerNumber;
-
         }
-        else if (!FindTheClosestBall.WinnderDeclared)
+        else if (!FindTheClosestBall.WinnerDeclared)
         {
             if (renderer != null)
             {
                 renderer.SetMaterial(Mat3, 0);
             }
             TurnCountBanner.text = "";
-            PlayerTurnBanner.text = "Calculating...";
         }
     }
 }
