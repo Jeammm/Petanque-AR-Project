@@ -11,8 +11,8 @@ public class RandomSpawner : MonoBehaviour
         Vector3 currectPosition = gameObject.transform.position;
         for (int i = 0; i < 5; i++)
         {
-            int ranX = Random.Range(-2, 3);
-            int ranZ = Random.Range(-2, 3);
+            int ranX = Random.Range(1, 4);
+            int ranZ = Random.Range(1, 4);
 
             Vector3 randomSpawnPosition = new Vector3(currectPosition.x + ranX, currectPosition.y + 2.5f, currectPosition.z + ranZ);
             GameObject newCube = Instantiate(cubePrefeb, randomSpawnPosition, Quaternion.identity);
