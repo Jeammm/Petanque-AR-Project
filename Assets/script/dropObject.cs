@@ -17,7 +17,7 @@ public class dropObject : MonoBehaviour
 
     private void Update()
     {   
-        if (powerActivated && Input.touchCount > 0 && notused)
+        if (powerActivated && Input.touchCount > 0&&notused)
         {
             Touch touch = Input.GetTouch(0);
 
