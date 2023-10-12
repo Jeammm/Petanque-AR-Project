@@ -71,6 +71,7 @@ public class SwipeScript : MonoBehaviour
 			}
 
 			GameObject newObject = Instantiate(objectToThrow, arCamera.transform.position, Quaternion.identity);
+			newObject.name = "player_" + FindTheClosestBall.playerNumber;
 			Rigidbody rb = newObject.GetComponent<Rigidbody>();
 
 			// Calculate the tilt angle based on the left or right swipe

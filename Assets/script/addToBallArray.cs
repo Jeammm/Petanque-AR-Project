@@ -32,11 +32,14 @@ public class addToBallArray : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collision)
+
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Special Item")
+        // Check if the collided object has the "Player Ball" tag
+        if (collision.gameObject.CompareTag("Special Item"))
         {
-            PlayerInventory.AddToInventory(collision.gameObject.name);
+            PlayerInventory.AddToInventory(collision.gameObject.name, gameObject.name);
         }
     }
 }

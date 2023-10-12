@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Special Item
+  - Player Ball
   layers:
   - Default
   - TransparentFX
