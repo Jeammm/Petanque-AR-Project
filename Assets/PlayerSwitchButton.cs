@@ -10,6 +10,9 @@ public class PlayerSwitchButton : MonoBehaviour
     [SerializeField]
     public TextMeshProUGUI TurnCountBanner;
 
+    public TextMeshProUGUI WarningText;
+
+
     void Start()
     {
 
@@ -46,6 +49,7 @@ public class PlayerSwitchButton : MonoBehaviour
         }
 
         FindTheClosestBall.TurnCount++;
+        WarningText.text = "";
         BallCount.UpdateBallLeft();
     }
 
