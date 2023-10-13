@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PullMagnetBall : MonoBehaviour
 {
     private bool PowerActivated = false;
     private bool DonePulling = false;
 
-    public float pullForce = 5.0f;
+    public float pullForce = 6.0f;
+
+    public TextMeshProUGUI WarningText;
 
     public void UsePullMagnetPower()
     {
+        if (FindTheClosestBall.ThrownThisTurn)
+        {
+            WarningText.text = "You can use Magnet Ball on the next turn.";
+            return;
+        }
         PowerActivated = true;
         if (FindTheClosestBall.playerNumber == 1)
         {
