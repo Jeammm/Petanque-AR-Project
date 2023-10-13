@@ -5,6 +5,7 @@ using UnityEngine;
 public class SlipperyBall : MonoBehaviour
 {
     private Rigidbody rigidbody;
+    private Rigidbody BallInArrayrigidbody;
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -20,6 +21,12 @@ public class SlipperyBall : MonoBehaviour
             {
                 rigidbody.angularDrag = 0.00001f;
                 rigidbody.drag = 1;
+                for (int i = 0; i < FindTheClosestBall.ballCount; i++) 
+                {
+                    BallInArrayrigidbody = FindTheClosestBall.thrownObjects[i].GetComponent<Rigidbody>();
+                    BallInArrayrigidbody.angularDrag = 0.00001f;
+                    BallInArrayrigidbody.drag = 1;
+                }
             }
             else
             {
@@ -34,6 +41,12 @@ public class SlipperyBall : MonoBehaviour
             {
                 rigidbody.angularDrag = 10;
                 rigidbody.drag = 2;
+                for (int i = 0; i < FindTheClosestBall.ballCount; i++) 
+                {
+                    BallInArrayrigidbody = FindTheClosestBall.thrownObjects[i].GetComponent<Rigidbody>();
+                    BallInArrayrigidbody.angularDrag = 10;
+                    BallInArrayrigidbody.drag = 2;
+                }
             }
             else
             {
