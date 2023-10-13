@@ -16,7 +16,7 @@ public class RandomSpawner : MonoBehaviour
 
             Vector3 randomSpawnPosition = new Vector3(currectPosition.x + ranX, currectPosition.y + 2.5f, currectPosition.z + ranZ);
             GameObject newCube = Instantiate(cubePrefeb, randomSpawnPosition, Quaternion.identity);
-            newCube.name = Random.Range(0, 5).ToString();
+            newCube.name = i.ToString();
         }
 
     }
