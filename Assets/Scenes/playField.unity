@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 113792742}
   - component: {fileID: 113792741}
   m_Layer: 0
-  m_Name: fifth power
+  m_Name: Push Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +304,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113792739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -312,7 +312,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.10000038}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &113792741
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: fifth power
+  m_text: Push Sphere
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4025,6 +4025,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoPowerToStealText: {fileID: 156894352}
+--- !u!114 &1875237841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875237831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5feaaf7ec280a27418239967b8746feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushForce: 4
+  pushRadius: 0.8
+  WarningText: {fileID: 156894352}
 --- !u!1001 &2009640952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4612,6 +4627,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1875237840}
+    - targetCorrespondingSourceObject: {fileID: 2057117800318959090, guid: 0e72bf1ca40d9494b835bc51a6f98234,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1875237841}
     - targetCorrespondingSourceObject: {fileID: 3829204104700219253, guid: 0e72bf1ca40d9494b835bc51a6f98234,
         type: 3}
       insertIndex: -1
@@ -5565,7 +5584,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2093448779}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1875237841}
+        m_TargetAssemblyTypeName: PushSphereBall, Assembly-CSharp
+        m_MethodName: UsePushSpherePower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2093448779
 MonoBehaviour:
   m_ObjectHideFlags: 0
